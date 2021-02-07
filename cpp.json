@@ -1,0 +1,125 @@
+{
+    "name": "C++",
+    "ext": "cpp",
+    "h_ext": "hpp",
+
+    "line_end": ";",
+
+    "bracket": {
+        "block_open": "{",
+        "block_close": "}",
+
+        "value_open": "(",
+        "value_close": ")",
+
+        "dotarray_open": "std::vector<int>({",
+        "dotarray_close": "})",
+
+        "list_open": "{",
+        "list_close": "}"
+    },
+    "operator": {
+        "commas" : ",",
+
+        "pointer" : "(&({{exp}}))",
+        "de_pointer" : "(*({{exp}}))",
+
+        "await" : "(({{exp}}).get())",
+        "async" : "async({{exp}})",
+
+        "tenary": "(({{condition}})?({{l}}):({{r}}))",
+        "assign" : "({{l}} = {{r}})",
+
+        "plus" : "({{l}} + {{r}})",
+        "minus" : "({{l}} - {{r}})",
+        
+        "bitor" : "({{l}} | {{r}})",
+        "or" : "({{l}} || {{r}})",
+        "bitand" : "({{l}} & {{r}})",
+        "and" : "({{l}} && {{r}})",
+
+        "eq" : "({{l}} == {{r}})",
+        "neq" : "({{l}} != {{r}})",
+        
+        "pair" : "std::pair<std::string, std::string>({{l}}, {{r}})",
+        
+        "property" : "{{object}}.{{name}}",
+        "context" : "{{context}}::{{member}}",
+        "index" : "{{exp}}[{{at}}]",
+
+        "else" : "({{l}} {{operator}} {{r}})"
+    },
+    "blocks": {
+        "if": "if ({{exp}}) { {{block}} }",
+        "else_if": "else if ({{exp}}) { {{block}} }",
+        "else": "else { {{block}} }",
+
+        "while": "while ({{exp}}) { {{block}} }",
+        "repeat": "for (int {{var}} = 0; {{var}}<{{time}}; {{var}}++) { {{block}} }",
+        "foreach": "for ({{var}} : {{collection}}) { {{block}} }"
+    },
+    "calls": {
+        "call": "{{method}}({{args}})",
+        "call_wrapped": "{{method}}{{args}}",
+        "method_call" : "{{object}}.{{call}}"
+    },
+    "types": {
+        "deduce_type": "auto",
+        "constant": "const",
+        "void_type": "void",
+        "integer": "int"
+    },
+
+    "lambda_blocks": "[&]({{args}}){{ {block} }}",
+    "to_lambdas": "[&](auto...pp){return ({{function}}({{args}}pp...));}",
+    "lambdas": "[&](auto...pp){{return({{call}}{{comma}}pp...));}}",
+
+    "returns": "return ({{exp}});",
+
+    "namespaces": "namespace {{name}} { {{block}} }",
+
+    "iter_vars": "{{type}} {{exp}}",
+    "arg_vars": "{{type}} {{name}}",
+
+    "header_guard": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",
+
+    "funcs": {
+        "functions": "{{type}} {{name}}({{args}}) { {{block}} }",
+        "constructor": "{{class}}({{args}}){ {{block}} }",
+        "entry": "int main(){ {{block}} }"
+    },
+    "assigns": {
+        "reference": {
+            "const": "const {{type}}& {{name}} = {{ref}}",
+            "make": "{{type}}& {{name}} = {{ref}}",
+            "let": "{{type}}& {{name}} = {{ref}}"
+        },
+        "copy": {
+            "const": "const {{type}} {{name}} = {{copy}}",
+            "make": "{{type}}* {{name}} = new {{type}}({{copy}})",
+            "let": "{{type}} {{name}} = {{copy}}"
+        },
+        "construct": {
+            "const": "const {{type}} {{name}}({{args}})",
+            "make": "{{type}}* {name} = new {type}({args})",
+            "let": "{{type}} {{name}}({{args}})"
+        }
+    },
+    "imports": {
+        "library": "#include \"{{path}}.hpp\"\n",
+        "stdlib": "#include \"worldlib.hpp\"\n",
+        "import": "#include <{{path}}>\n",
+
+        "targetstdlibpath": "worldlib.hpp",
+        "stdlibpath": " WRITE WHERE YOUR STANDARD LIBRARY IS. "
+    },
+    "classes": {
+        "inherit": "class {{name}} : {{super}} { {{block}} };",
+        "class": "class {{name}}{ {{block}} };"
+    },
+    "access": {
+        "protected": "protected:",
+        "private": "private:",
+        "public": "public:"
+    }
+}
