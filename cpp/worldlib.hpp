@@ -1,6 +1,6 @@
 
-#ifndef _ENPPSTD_
-#define _ENPPSTD_
+#ifndef _WLIBSTD_
+#define _WLIBSTD_
 #include <type_traits>
 #include <algorithm>
 #include <iostream>
@@ -17,7 +17,6 @@
 #ifdef __cpp_lib_ranges
 #include <ranges>
 #endif
-#define jthread(t) std::thread((t)).join()
 #define dthread(t) std::thread((t)).detach()
 struct __instead_of_void { friend std::ostream& operator<<(std::ostream& os, __instead_of_void _) { return os << "void"; }};
 template<class T> struct __gt { using t = T; };
@@ -34,7 +33,7 @@ template <class T>std::string __pa(T& e) { std::ostringstream oss; oss << &e; re
 template <class T>std::string __pa(T&& e) { return "rvalue"; }
 template<class F>inline constexpr auto __pr1(const F& e) {if
 constexpr (std::is_same<decltype(e()), void>::value) { e(); return __instead_of_void(); }else if constexpr (!__lv<decltype(e())>::value) {auto&&v=e();std::ostringstream oss;oss<<"("<<
-typeid(e()).name() << ":" << sizeof(decltype(e())) <<__pa(v)<<")";return oss.str();}else return e();}
+typeid(e()).name() << ":" << sizeof(decltype(e())) <<")";return oss.str();}else return e();}
 struct __constructor{__constructor(){std::cout.tie(0);std::ios_base::sync_with_stdio(0);std::cout<<std::boolalpha;}}__Construct;
 typedef char i1; typedef short i2; typedef long i4; typedef long long i8;
 typedef unsigned char u1; typedef unsigned short u2; typedef unsigned long u4; typedef unsigned long long u8;
@@ -85,7 +84,5 @@ inline range until(i4 a, i4 b) { return range(a, b); }
 #ifdef __cpp_lib_ranges
 namespace srv = std::ranges::views;
 namespace sr = std::ranges;
-//using namespace srv;
-//using namespace sr;
 #endif
 #endif

@@ -274,7 +274,7 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
         left_operator(&mut do_pass, (units, list, "^([+-]|plus|minus)$"), &mut |cnt :usize| {
             let left_s = String::from(&list[..cnt].to_vec().join(" "));
             let left = value_parse(&left_s, 1, &lang);
-            if regi(&units[cnt], "^(plus|+)$") {
+            if regi(&units[cnt], "^(plus|\\+)$") {
                 ret = render(jpath!(lang, operator.plus)?, &json!({
                     "l": left?,
                     "r": &value_parse(&list[cnt+1..].to_vec().join(" "), 1, &lang)?,

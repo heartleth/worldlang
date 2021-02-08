@@ -1,0 +1,319 @@
+/* 
+ * Worldlang language template : Please contribute some languages
+ * 
+ * To make language json: 
+ * - write itms by comment descriptions
+ * - Delete comments
+ * - copy it into <languagename>.json
+ * - make directory <languagename> and algo copy it into directory
+ *
+ * These are loaded when engine parses the statement
+ * So if the language doesn't have the required syntax, just delete it
+ */
+{
+    // Language name
+    // ex: C++, Ruby, Lisp, JavaScript
+    "name": "Language name",
+
+    // Output file extension
+    // ex: cpp, js, rb
+    "ext": "",
+    // Output file extension - transpiled by 'import ...' statement
+    // ex: hpp, h, js
+    "h_ext": "",
+
+    // "line_end": ";"
+    // Enpp-every engine does not make newlines automaticly.
+    // If you want to write about javascript then please write ";" here
+    "line_end": "", 
+
+    "bracket": {
+        // Opening and closing blocks
+        // "block_open": "{",
+        // "block_close": "}",
+        // to open blocks in the language
+        "block_open": "",
+        "block_close": "",
+
+        // Opening and closing values
+        // "value_open": "(",
+        // "value_close": ")",
+        "value_open": "",
+        "value_close": "",
+
+        // This means how [1..10] can be compiled
+        // if "[", "]", [1..3] will compiled as [1, 2, 3,]
+        "dotarray_open": "",
+        "dotarray_close": "",
+
+        // Opening and closing Initializer lists
+        // "list_open": "{",
+        // "list_close": "}"
+        "list_open": "",
+        "list_close": ""
+    },
+    "operator": {
+        // Commas of the language
+        // "commas" : ",",
+        "commas" : "",
+
+        // Example for C++
+        // "pointer" : "(&({{exp}}))",
+        // "de_pointer" : "(*({{exp}}))",
+        "pointer" : "",
+        "de_pointer" : "",
+
+        // async, await operators
+        // Example for javascript
+        // "async" : "(async {{exp}})",
+        // "async" : "(await {{exp}})",
+        "async" : "",
+        "await" : "",
+
+        // tenary operators
+        // "tenary": "({{condition}} ? {{l}} : {{r}})",
+        "tenary": "",
+        
+        // These binary operators are designed to cover S-exp
+        // Write the format of expressions
+
+        // assign operators (a=b)
+        // "assign": "({{l}} = {{r}})",
+        "assign": "",
+
+        // + - operators (a=b)
+        // "plus" : "({{l}} + {{r}})",
+        // "minus" : "({{l}} - {{r}})",
+        "plus": "",
+        "minus": "",
+        
+        // logical operators
+        // "bitor": "({{l}} | {{r}})",
+        // "or": "({{l}} || {{r}})",
+        // "bitand": "({{l}} & {{r}})",
+        // "and": "({{l}} && {{r}})",
+        "bitor": "",
+        "or": "",
+        "bitand": "",
+        "and": "",
+
+        // equality operators
+        // "eq": "({{l}} == {{r}})",
+        // "neq": "({{l}} != {{r}})",
+        "eq": "",
+        "neq": "",
+        
+        // pair operators
+        // "pair": "{ {{l}} : {{r}} }",
+        "pair": "",
+        
+        // properties
+        // "property": "{{object}}.{{name}}",
+        "property": "",
+
+        // context access
+        // "context": "{{context}}::{{member}}",
+        "context": "",
+
+        // array index
+        // "index": "{{exp}}[ {{at}} ]",
+        "index": "",
+
+        // Else...
+        // multiplication, divide, size comparison comes here
+        // todo: specialize it after
+        // "else": "({{l}} {{operator}} {{r}})"
+        "else": ""
+    },
+    "blocks": {
+        // If .. else if .. else blocks
+        // "if": "if ({{exp}}) { {{block}} }",
+        // "else_if": "else if ({{exp}}) { {{block}} }",
+        // "else": "else { {{block}} }",
+        "if": "",
+        "else_if": "",
+        "else": "",
+
+        // while blocks
+        // "while": "while ({{exp}}) { {{block}} }",
+        "while": "",
+        
+        // repeat blocks
+        // "repeat": "for (int {{var}} = 0; {{var}}<{{time}}; {{var}}++) { {{block}} }",
+        // {{var}} will given as random token with alphabets and numbers
+        "repeat": "",
+
+        // repeat blocks
+        // "foreach": "for ({{var}} : {{collection}}) { {{block}} }"
+        // {{var}} will given as "iter_vars" format below
+        "foreach": ""
+    },
+    "calls": {
+        // Function calls
+
+        // Basic calls
+        // "call": "{{method}}({{args}})",
+        "call": "",
+
+        // Calls if arguments are already wrapped as brackets
+        // "call_wrapped": "{{method}}{{args}}",
+        // If you can't understand, just fill it as example
+        "call_wrapped": "",
+
+        // Object method calls
+        // "method_call" : "{{object}}.{{call}}"
+        // {{call}} will given as the format "call" above
+        "method_call" : ""
+    },
+    "types": {
+        // Types
+
+        // Deduce type
+        // "deduce_type" : "var"
+        "deduce_type": "",
+
+        // Constant types
+        // "constant" : "final"
+        "constant": "",
+        
+        // void types
+        // "void_type": "void"
+        "void_type": "",
+        
+        // integer types
+        // "integer": "Number"
+        "integer": ""
+    },
+
+    // blocked lambdas
+    // "lambda_blocks": "({{args}})=>{ {{block}} }",
+    "lambda_blocks": "",
+
+    // to V [prep. arg[, arg2...]] lambdas
+    // "to_lambdas": "(...pp) => {{function}}({{args}} ...pp)",
+    "to_lambdas": "",
+    
+    // lambdas
+    // "lambdas": "({{args}}) => ({{exp}})",
+    "lambdas": "",
+
+    // return statements
+    // "returns": "return ({{exp}});",
+    "returns": "",
+    
+    // namespaces
+    // "namespaces": "namespace {{name}} { {{block}} }",
+    "namespaces": "",
+
+    // Variable declarition in foreach statements
+    // {{type}} may be "deduce_type"
+    // "iter_vars": "{{type}} {{exp}}",
+    "iter_vars": "",
+
+    // Function argument format
+    // {{type}} may also be "deduce_type"
+    // "arg_vars": "{{type}} {{name}}",
+    "arg_vars": "",
+
+    // Header guards for C/C++
+    // "header_guard": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",
+    // just write "{{contents}}" if unnecessary
+    "header_guard": "",
+
+    "funcs": {
+        // Functions
+        
+        // Basic functions
+        // "functions": "{{type}} {{name}}({{args}}) { {{block}} }",
+        "functions": "",
+
+        // Class Object constructors
+        // "constructor": "{{class}}({{args}}){ {{block}} }",
+        "constructor": "",
+
+        // Code entrypoint
+        // "entry": "int main(){ {{block}} }"
+        "entry": ""
+    },
+    "assigns": {
+        "reference": {
+            // Constant reference variables
+            // "const": "const {{type}}& {{name}} = {{ref}}",
+            "const": "",
+            
+            // Mutable reference variables
+            // "let": "{{type}}& {{name}} = {{ref}}"
+            "let": "",
+
+            // Fill something same as "let"
+            // "make": "{{type}}& {{name}} = {{ref}}",
+            "make": ""
+        },
+        "copy": {
+            // Constant copy-initialized variable
+            // "const": "const {{type}} {{name}} = {{copy}}",
+            "const": "",
+
+            // Mutable copy-initialized variable (In heap)
+            // "make": "{{type}}* {{name}} = new {{type}}({{copy}})",
+            "make": "",
+
+            // Mutable copy-initialized variable (In stack)
+            // "let": "{{type}} {{name}} = {{copy}}"
+            "let": ""
+        },
+        "construct": {
+            // Constant Constructor-initialized variable
+            // "const": "const {{type}} {{name}}({{args}})",
+            "const": "",
+            
+            // Mutable Constructor-initialized variable (In heap)
+            // "make": "{{type}}* {name} = new {type}({args})",
+            "make": "",
+            
+            // Mutable Constructor-initialized variable
+            // "let": "{{type}} {{name}}({{args}})"
+            "let": ""
+        }
+    },
+    "imports": {
+        // Library import
+        // standard library, installed library...etc
+        // "library": "#include <{{path}}.hpp>\n",
+        "library": "",
+
+        // worldlib standard library
+        // please read stdlib_proto.md to write standard library
+        // "stdlib": "#include \"worldlib.hpp\"\n",
+        "stdlib": "",
+
+        // importing code files
+        // "import": "#include \"{{path}}\"\n",
+        "import": "",
+            
+        // Where to copy worldlib at
+        // "targetstdlibpath": "worldlib.hpp",
+        "targetstdlibpath": "",
+        "stdlibpath": " WRITE WHERE YOUR STANDARD LIBRARY IS. "
+    },
+    "classes": {
+        // class doesn't interit another class(es)
+        // "class": "class {{name}}{ {{block}} };"
+        "class": "",
+        // class interits another class(es)
+        // "inherit": "class {{name}} : {{super}} { {{block}} };"
+        "inherit": ""
+    },
+    "access": {
+        // method/property access keywords
+
+        // "protected": "protected",
+        "protected": "",
+        
+        // "private": "private",
+        "private": "",
+
+        // "public": "public"
+        "public": ""
+    }
+}
