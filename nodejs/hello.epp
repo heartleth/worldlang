@@ -2,4 +2,9 @@ library standard
 
 When it starts
     Let a as 10
-    println: (a + 20)
+    
+    println: a
+    
+    Set value of address of a as 20
+
+    println: a

@@ -134,7 +134,7 @@ form: `[S(1), S(2), ..., S(len(c)-1)] where S(n) = fn(S(n-1), c[n]), S(0) = c(0)
 ```ts
 wait(t :time_type)->type(t)
 ```
-Wait for t implements time duration.
+Wait for t ms.
 
 ### get_time
 ```ts

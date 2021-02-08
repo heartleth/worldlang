@@ -74,9 +74,9 @@
         "_integer": "Number"
     },
 
-    "lambda_blocks": "[&]({{args}}){{ {block} }}",
-    "to_lambdas": "[&](auto...pp){return ({{function}}({{args}}pp...));}",
-    "lambdas": "({{args}}){ return( {{exp}} ); }",
+    "lambda_blocks": "({{args}})=>{{ {block} }}",
+    "to_lambdas": "(...pp)=>({{function}}({{args}}pp...))",
+    "lambdas": "({{args}}) => ( {{exp}} )",
 
     "returns": "return ({{exp}});",
 
@@ -90,7 +90,7 @@
     "funcs": {
         "functions": "function {{name}}({{args}}) { {{block}} }",
         "constructor": "constructor({{args}}){ {{block}} }",
-        "entry": "(()=>{ {{block}} })();"
+        "entry": "(async ()=>{ {{block}} })();"
     },
     "assigns": {
         "reference": {

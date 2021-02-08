@@ -111,7 +111,7 @@
         "library": "#include <{{path}}>\n",
 
         "targetstdlibpath": "worldlib.hpp",
-        "stdlibpath": "worldlib.hpp"
+        "stdlibpath": "../libs/worldlib.hpp"
     },
     "classes": {
         "inherit": "class {{name}} : {{super}} { {{block}} };",

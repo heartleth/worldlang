@@ -1,2 +1,2 @@
 const{print,println}=require('./worldlib');
-(()=>{ let a = 10;println((a + 20)); })();
+(async ()=>{ let a = 10;println(a);([a][0] = 20);println(a); })();

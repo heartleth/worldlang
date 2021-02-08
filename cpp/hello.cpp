@@ -1,2 +1,2 @@
 #include "worldlib.hpp"
-int main(){ println("Hello, world!"); }
+int main(){ println("Hello, world!"); wait(1000); }

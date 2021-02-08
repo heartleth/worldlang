@@ -67,7 +67,7 @@ template<class T1, class T2>std::vector<typename T1::value_type> cat(T1 a, T2 b)
 template<class T, class F = std::less<typename T::value_type>>typename T::iterator max(T&& e, F f = F()) {auto first = e.begin();auto last = e.end();if (first == last) return last;typename T::iterator largest = first;++first;
 for (; first != last; ++first) {if (f(*largest, *first)) {largest = first;}}return largest;}
 template<class T>typename T::value_type sum(T&& c) {return std::accumulate(c.begin(), c.end(), typename T::value_type());}
-template<class T>T wait(T s) { std::this_thread::sleep_for(s); return s; }
+template<class T>T wait(T s) { std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(s)); return s; }
 class range {private:int start; int End; int diff; public:typedef int value_type;typedef const int& const_reference;typedef int&reference;
 range(int _end) { start = 0; End = _end; diff = 1; }
 range(int _start, int _end, int _diff = 1) { start = _start; End = _end; diff = _diff; }
