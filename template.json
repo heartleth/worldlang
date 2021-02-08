@@ -8,7 +8,7 @@
  * - make directory <languagename> and algo copy it into directory
  *
  * These are loaded when engine parses the statement
- * So if the language doesn't have the required syntax, just delete it
+ * So if the language doesn't have the required syntax, just put _ in front of,
  */
 {
     // Language name

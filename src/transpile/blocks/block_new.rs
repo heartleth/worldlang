@@ -67,9 +67,9 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
                 "copy": &value_parse(&splited[where_as+1..].to_vec().join(" "), 1, &lang)?
             });
             match make_type {
-                Have => render(jpath!(lang, assigns.construct.Const)?, data)?,
-                Let => render(jpath!(lang, assigns.construct.Let)?, data)?,
-                Make => render(jpath!(lang, assigns.construct.make)?, data)?,
+                Have => render(jpath!(lang, assigns.copy.Const)?, data)?,
+                Let => render(jpath!(lang, assigns.copy.Let)?, data)?,
+                Make => render(jpath!(lang, assigns.copy.make)?, data)?,
             }
         },
         RefType => {

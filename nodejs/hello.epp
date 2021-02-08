@@ -1,0 +1,5 @@
+library standard
+
+When it starts
+    Let a as 10
+    println: (a + 20)

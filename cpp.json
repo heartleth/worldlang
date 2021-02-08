@@ -81,7 +81,7 @@
     "iter_vars": "{{type}} {{exp}}",
     "arg_vars": "{{type}} {{name}}",
 
-    "header_guard": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",
+    "header_guards": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",
 
     "funcs": {
         "functions": "{{type}} {{name}}({{args}}) { {{block}} }",
@@ -101,7 +101,7 @@
         },
         "construct": {
             "const": "const {{type}} {{name}}({{args}})",
-            "make": "{{type}}* {name} = new {type}({args})",
+            "make": "{{type}}* {{name}} = new {{type}}({{args}})",
             "let": "{{type}} {{name}}({{args}})"
         }
     },
