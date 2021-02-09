@@ -92,7 +92,17 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
             }
             return Ok(ret);
         }
-        return Ok(String::from(s));
+        if units[0] == "true" {
+            return Ok(String::from(jpath!(lang, True)?));
+        }
+        if units[0] == "false" {
+            return Ok(String::from(jpath!(lang, False)?));
+        }
+        let first :char = units[0].chars().next().unwrap();
+        if first.is_numeric() {
+            return Ok(s.to_string());
+        }
+        return render(jpath!(lang, ident)?, &json!({ "name":s }));
     }
     
     if is_bracket(&s, ('(', ')'))? {

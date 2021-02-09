@@ -1,0 +1,129 @@
+{
+    "name": "Php",
+    "ext": "php",
+    "h_ext": "php",
+
+    "line_end": ";",
+
+    "ident": "${{name}}",
+    "true": "true",
+    "false": "false",
+
+    "bracket": {
+        "block_open": "{",
+        "block_close": "}",
+
+        "value_open": "(",
+        "value_close": ")",
+
+        "dotarray_open": "[",
+        "dotarray_close": "]",
+
+        "list_open": "[",
+        "list_close": "]"
+    },
+    "operator": {
+        "commas" : ",",
+
+        "pointer" : "(&({{exp}}))",
+        "de_pointer" : "({{exp}})",
+
+        "await" : "({{exp}})",
+        "async" : "({{exp}})",
+
+        "tenary": "(({{condition}})?({{l}}):({{r}}))",
+        "assign" : "({{l}} = {{r}})",
+
+        "plus" : "({{l}} + {{r}})",
+        "minus" : "({{l}} - {{r}})",
+        
+        "bitor" : "({{l}} | {{r}})",
+        "or" : "({{l}} || {{r}})",
+        "bitand" : "({{l}} & {{r}})",
+        "and" : "({{l}} && {{r}})",
+
+        "eq" : "({{l}} == {{r}})",
+        "neq" : "({{l}} != {{r}})",
+        
+        "pair" : "[ {{l}} => {{r}} ]",
+        
+        "property" : "{{object}}->{{name}}",
+        "context" : "{{context}}::{{member}}",
+        "index" : "{{exp}}[{{at}}]",
+
+        "else" : "({{l}} {{operator}} {{r}})"
+    },
+    "blocks": {
+        "if": "if ({{exp}}) { {{block}} }",
+        "else_if": "else if ({{exp}}) { {{block}} }",
+        "else": "else { {{block}} }",
+
+        "while": "while ({{exp}}) { {{block}} }",
+        "repeat": "for (${{var}} = 0; ${{var}}<{{time}}; ${{var}}++) { {{block}} }",
+        "foreach": "foreach ({{collection}} as ${{var}}) { {{block}} }"
+    },
+    "calls": {
+        "call": "{{method}}({{args}})",
+        "call_wrapped": "{{method}}{{args}}",
+        "method_call" : "{{object}}->{{call}}"
+    },
+    "types": {
+        "deduce_type": "",
+        "constant": "",
+        "void_type": "",
+        "integer": ""
+    },
+
+    "lambda_blocks": "function({{args}}){{ {block} }}",
+    "to_lambdas": "function(...$pp){return ({{function}}({{args}}...$pp));}",
+    "lambdas": "function({{args}}){ return( {{exp}} ); }",
+
+    "returns": "return ({{exp}});",
+
+    "namespaces": "namespace {{name}} { {{block}} }",
+
+    "iter_vars": "${{name}}",
+    "arg_vars": "${{name}}",
+
+    "header_guards": "<?php {{contents}} ?>",
+
+    "funcs": {
+        "functions": "function {{name}}({{args}}) { {{block}} }",
+        "constructor": "fucntion __construct({{args}}){ {{block}} }",
+        "entry": "{{block}}"
+    },
+    "assigns": {
+        "reference": {
+            "const": "${{name}} = &{{ref}}",
+            "make": "${{name}} = &{{ref}}",
+            "let": "${{name}} = &{{ref}}"
+        },
+        "copy": {
+            "const": "${{name}} = {{copy}}",
+            "make": "${{name}} = new {{type}}({{copy}})",
+            "let": "${{name}} = {{copy}}"
+        },
+        "construct": {
+            "const": "${{name}} = new{{type}}({{args}})",
+            "make": "${{name}} = new{{type}}({{args}})",
+            "let": "${{name}} = new{{type}}({{args}})"
+        }
+    },
+    "imports": {
+        "import": "include '{{path}}.php';\n",
+        "stdlib": "include 'worldlib.php';\n",
+        "library": "include '{{path}}';\n",
+
+        "targetstdlibpath": "worldlib.php",
+        "stdlibpath": "../libs/worldlib.php"
+    },
+    "classes": {
+        "inherit": "class {{name}} extends {{super}} { {{block}} }",
+        "class": "class {{name}} { {{block}} }"
+    },
+    "access": {
+        "protected": "protected",
+        "private": "private",
+        "public": "public"
+    }
+}

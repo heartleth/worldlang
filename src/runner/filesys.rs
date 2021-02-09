@@ -24,7 +24,10 @@ pub fn convert_to_cpp(path :&String, ext :&str, lang :&json::JsonValue)->std::io
         })).unwrap().as_bytes())?;
     }
     else {
-        target.write_all(converted.as_bytes())?;
+        target.write_all(render(&lang["header_guards"].as_str().unwrap(), &json!({
+            "token": rand::thread_rng().sample_iter(&Alphanumeric).take(20).collect::<String>(),
+            "contents": converted
+        })).unwrap().as_bytes())?;
     }
     Ok(())
 }

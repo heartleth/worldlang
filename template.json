@@ -27,6 +27,11 @@
     // If you want to write about javascript then please write ";" here
     "line_end": "", 
 
+    // "line_end": ";"
+    "ident": "{{name}}",
+    "true": "true",
+    "false": "false",
+
     "bracket": {
         // Opening and closing blocks
         // "block_open": "{",
@@ -294,7 +299,7 @@
         // Where to copy worldlib at
         // "targetstdlibpath": "worldlib.hpp",
         "targetstdlibpath": "",
-        "stdlibpath": " WRITE WHERE YOUR STANDARD LIBRARY IS. "
+        "stdlibpath": "../libs/worldlib.SOME_EXT"
     },
     "classes": {
         // class doesn't interit another class(es)

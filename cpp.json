@@ -5,6 +5,10 @@
 
     "line_end": ";",
 
+    "ident": "{{name}}",
+    "true": "true",
+    "false": "false",
+
     "bracket": {
         "block_open": "{",
         "block_close": "}",
@@ -111,7 +115,7 @@
         "library": "#include <{{path}}>\n",
 
         "targetstdlibpath": "worldlib.hpp",
-        "stdlibpath": " WRITE WHERE YOUR STANDARD LIBRARY IS. "
+        "stdlibpath": "../libs/worldlib.hpp"
     },
     "classes": {
         "inherit": "class {{name}} : {{super}} { {{block}} };",
