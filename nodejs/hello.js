@@ -1,2 +1,2 @@
-const{print,println}=require('./worldlib');
-(async ()=>{ let a = 10;println(a);([a][0] = 20);println(a); })();
+const{print,println,input,input_line,static_input,static_input_line,tup,vec,until,sum,max,map,cat,each,fold,bfold,integrate,filter,wait,get_time,make_string,stoi,string,vector,i1,i2,i4,i8,u1,u2,u4,u8,f4,f8,ci1,ci2,ci4,ci8,cu1,cu2,cu4,cu8,cf4,cf8}=require('./worldlib');
+(async ()=>{ println(max([1,2,3,4,5,6,7,8,9,10,])[0]); })();

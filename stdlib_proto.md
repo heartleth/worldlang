@@ -126,7 +126,7 @@ integrate(c :Container, fn :(T, type(c).value_type)->T)->vector<T>
 It's hard to explain!
 It acts like partial sum.
 
-form: `[S(1), S(2), ..., S(len(c)-1)] where S(n) = fn(S(n-1), c[n]), S(0) = c(0), S(n) ∈ O(N^2)`
+form: `[S(0), S(1), ..., S(len(c)-1)] where S(n) = fn(S(n-1), c[n]), S(0) = c(0), S(n) ∈ O(N)`
 
 ## time
 
@@ -142,7 +142,7 @@ get_time(fn :(...any)->any, ...args :any)->void_type
 ```
 Count time while `fn(...args)` running and show on stdout with format `{time:.6} second(s) spent. \n`.
 
-## type esports
+## type exports
 
 form | description 
 -- | -- 
@@ -153,11 +153,6 @@ form | description
 `f4` | 4 byte floating point
 `f8` | 8 byte fixed point
 `cuB ciB cf4 cf8` | constant of them
-
-## string
-## vector<T>
-## iB uB ciB cuB fB cfB ld cld
-
 
 ## etc.
 
