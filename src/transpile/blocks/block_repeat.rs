@@ -34,14 +34,14 @@ pub fn parse_for(tree :&Mem, pivot :usize, lang :&json::JsonValue)->Result<Strin
         if elem.to_ascii_lowercase() == "of" { break; }
         else { where_of += 1; }
     }
-    let mut to_assign = render(jpath!(lang, types.iter_vars)?, &json!({
+    let mut to_assign = render(jpath!(lang, iter_vars)?, &json!({
         "type": jpath!(lang, types.deduce_type)?,
         "name": "_"
     }))?;
     let dec = arguments_parse(&splited[1..where_of].to_vec(), &lang)?;
 
     if dec.len() == 1 {
-        to_assign = render(jpath!(lang, types.iter_vars)?, &json!({
+        to_assign = render(jpath!(lang, iter_vars)?, &json!({
             "type": dec[0].typename,
             "name": dec[0].name
         }))?;

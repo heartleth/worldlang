@@ -71,10 +71,10 @@
         "method_call" : "{{object}}.{{call}}"
     },
     "types": {
-        "deduce_type": "auto",
-        "constant": "const",
-        "void_type": "void",
-        "integer": "int"
+        "deduce_type": "",
+        "constant": "",
+        "void_type": "NilClass",
+        "integer": "Fixnum"
     },
 
     "lambda_blocks": "do |{{args}}|\n {{block}}\nend",
@@ -117,19 +117,19 @@
     },
     "imports": {
         "import": "require '{{path}}.rb'\n",
-        "stdlib": "#include \"worldlib.hpp\"\n",
-        "library": "#include <{{path}}>\n",
+        "stdlib": "require 'worldlib.rb'\n",
+        "library": "",
 
-        "targetstdlibpath": "worldlib.hpp",
-        "stdlibpath": "../libs/worldlib.hpp"
+        "targetstdlibpath": "worldlib.rb",
+        "stdlibpath": "../libs/worldlib.rb"
     },
     "classes": {
-        "inherit": "class {{name}} : {{super}} { {{block}} };",
-        "class": "class {{name}} {{block}} end "
+        "inherit": "class {{name}} < {{super}}\n{{block}}\nend\n",
+        "class": "class {{name}}\n{{block}}\nend\n"
     },
     "access": {
-        "protected": "protected:",
-        "private": "private:",
-        "public": "public:"
+        "protected": "\nprotected\n",
+        "private": "\nprivate\n",
+        "public": "\npublic\n"
     }
 }
