@@ -1,0 +1,132 @@
+{
+    "name": "Bython",
+    "ext": "by",
+    "h_ext": "by",
+
+    "line_end": ";",
+
+    "ident": "{{name}}",
+    "true": "true",
+    "false": "false",
+
+    "bracket": {
+        "block_open": "{",
+        "block_close": "}",
+
+        "value_open": "(",
+        "value_close": ")",
+
+        "dotarray_open": "[",
+        "dotarray_close": "]",
+
+        "list_open": "[",
+        "list_close": "]"
+    },
+    "operator": {
+        "commas" : ",",
+
+        "pointer" : "[{{exp}}]",
+        "de_pointer" : "({{exp}})[0]",
+
+        "await" : "{{exp}}",
+        "async" : "{{exp}}",
+
+        "tenary": "({{l}}) if (({{condition}}) else ({{r}}))",
+        "assign" : "({{l}} = {{r}})",
+
+        "plus" : "({{l}} + {{r}})",
+        "minus" : "({{l}} - {{r}})",
+        
+        "bitor" : "({{l}} | {{r}})",
+        "or" : "({{l}} || {{r}})",
+        "bitand" : "({{l}} & {{r}})",
+        "and" : "({{l}} && {{r}})",
+
+        "eq" : "({{l}} == {{r}})",
+        "neq" : "({{l}} != {{r}})",
+        
+        "pair" : "({{l}}, {{r}})",
+        
+        "property" : "{{object}}.{{name}}",
+        "context" : "{{context}}.{{member}}",
+        "index" : "{{exp}}[{{at}}]",
+
+        "else" : "({{l}} {{operator}} {{r}})"
+    },
+    "blocks": {
+        "if": "if ({{exp}}) { {{block}} }",
+        "else_if": "elif ({{exp}}) { {{block}} }",
+        "else": "else { {{block}} }",
+
+        "while": "while ({{exp}}) { {{block}} }",
+        "repeat": "for {{var}} in range({{time}}) { {{block}} }",
+        "foreach": "for {{var}} in {{collection}} { {{block}} }"
+    },
+    "calls": {
+        "call": "{{method}}({{args}})",
+        "call_wrapped": "{{method}}{{args}}",
+        "method_call" : "{{object}}.{{call}}"
+    },
+    "types": {
+        "deduce_type": "",
+        "constant": "",
+        "void_type": "",
+        "integer": "int"
+    },
+
+    "lambda_blocks": "",
+    "to_lambdas": "lambda *pp: {{function}}({{args}} *pp)",
+    "lambdas": "lambda ({{args}}): ({{exp}} )",
+
+    "returns": "return ({{exp}});",
+
+    "namespaces": "{{block}}",
+
+    "iter_vars": "{{name}}",
+    "arg_vars": "{{name}}",
+
+    "header_guards": "{{contents}}",
+
+    "funcs": {
+        "functions": "def {{name}}({{args}})->{{type}} { {{block}} }",
+        "constructor": "__init__({{args}}){ {{block}} }",
+        "entry": "if __name__=='__main__' { {{block}} }"
+    },
+    "assigns": {
+        "reference": {
+            "const": "{{name}} = {{ref}}",
+            "make": "{{name}} = {{ref}}",
+            "let": "{{name}} = {{ref}}",
+            "instance": "{{name}} = {{ref}}"
+        },
+        "copy": {
+            "const": "{{name}} = {{copy}}",
+            "make": "{{name}} = {{type}}({{copy}})",
+            "let": "{{name}} = {{copy}}",
+            "instance": "{{name}} = {{copy}}"
+        },
+        "construct": {
+            "const": "{{name}} = {{type}}({{args}})",
+            "make": "{{name}} = {{type}}({{args}})",
+            "let": "{{name}} = {{type}}({{args}})",
+            "instance": "{{name}} = {{type}}({{args}})"
+        }
+    },
+    "imports": {
+        "import": "from {{path}} import *\n",
+        "stdlib": "from worldlib import *\n",
+        "library": "import {{path}}\n",
+
+        "targetstdlibpath": "worldlib.py",
+        "stdlibpath": "../libs/worldlib.py"
+    },
+    "classes": {
+        "inherit": "class {{name}}({{super}}) { {{block}} }",
+        "class": "class {{name}}{ {{block}} }"
+    },
+    "access": {
+        "protected": "",
+        "private": "",
+        "public": ""
+    }
+}

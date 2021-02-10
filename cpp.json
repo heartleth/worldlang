@@ -82,7 +82,7 @@
 
     "namespaces": "namespace {{name}} { {{block}} }",
 
-    "iter_vars": "{{type}} {{exp}}",
+    "iter_vars": "{{type}} {{name}}",
     "arg_vars": "{{type}} {{name}}",
 
     "header_guards": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",

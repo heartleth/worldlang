@@ -21,7 +21,9 @@ pub fn parse_sentence(s :&String, lang :&json::JsonValue)->Result<String, &'stat
                 "call": render(jpath!(lang, calls.call)?, &json!({
                     "method": &spl[subject_idx + 1],
                     "args": &value_parse(&spl[subject_idx+3..].to_vec().join(" "), 0, &lang)?
-                }))?
+                }))?,
+                "method": &spl[subject_idx + 1],
+                "args": &value_parse(&spl[subject_idx+3..].to_vec().join(" "), 0, &lang)?
             }))?;
         }
         else {
@@ -38,7 +40,9 @@ pub fn parse_sentence(s :&String, lang :&json::JsonValue)->Result<String, &'stat
                 "call": render(jpath!(lang, calls.call)?, &json!({
                     "method": &spl[subject_idx + 1],
                     "args": ""
-                }))?
+                }))?,
+                "method": &spl[subject_idx + 1],
+                "args": ""
             }))?;
         }
         else {

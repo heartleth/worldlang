@@ -20,7 +20,9 @@ pub fn convert_to_cpp(path :&String, ext :&str, lang :&json::JsonValue)->std::io
     if ext == lang["h_ext"].as_str().unwrap() {
         target.write_all(render(&lang["header_guards"].as_str().unwrap(), &json!({
             "token": rand::thread_rng().sample_iter(&Alphanumeric).take(20).collect::<String>(),
-            "contents": converted
+            "contents": converted,
+            "filename": format!("{}.{}", path, ext),
+            "filenamewithoutext": path
         })).unwrap().as_bytes())?;
     }
     else {

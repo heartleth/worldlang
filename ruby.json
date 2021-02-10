@@ -1,4 +1,8 @@
 {
+    "_":[
+        "I give up this, because function call of ruby is different with lambda functions.",
+        "Maybe, I'll retry after"
+    ],
     "name": "Ruby",
     "ext": "rb",
     "h_ext": "rb",
