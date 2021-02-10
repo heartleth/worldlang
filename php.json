@@ -96,17 +96,20 @@
         "reference": {
             "const": "${{name}} = &{{ref}}",
             "make": "${{name}} = &{{ref}}",
-            "let": "${{name}} = &{{ref}}"
+            "let": "${{name}} = &{{ref}}",
+            "instance": "${{name}} = &{{ref}}"
         },
         "copy": {
             "const": "${{name}} = {{copy}}",
             "make": "${{name}} = new {{type}}({{copy}})",
-            "let": "${{name}} = {{copy}}"
+            "let": "${{name}} = {{copy}}",
+            "instance": "${{name}} = {{copy}}"
         },
         "construct": {
             "const": "${{name}} = new{{type}}({{args}})",
             "make": "${{name}} = new{{type}}({{args}})",
-            "let": "${{name}} = new{{type}}({{args}})"
+            "let": "${{name}} = new{{type}}({{args}})",
+            "instance": "${{name}} = new{{type}}({{args}})"
         }
     },
     "imports": {

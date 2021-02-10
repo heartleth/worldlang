@@ -5,6 +5,12 @@ pub fn parse_else(tree :&Mem, nth :&mut usize, parent_idx :usize, lang :&json::J
     let parent = &tree[parent_idx];
     let splited = &split(&tree[parent.children[*nth]].code);
     let code = &tree[parent.children[*nth]].code;
+    let mut is_trailing = false;
+    if *nth < parent.children.len() - 1 && splited.len() > 1 {
+        if regi(&keyword(&tree[parent.children[*nth + 1]].code), "^else$") {
+            is_trailing = true;
+        }
+    }
 
     let mut ret = if splited.len() == 1 {
         render(jpath!(lang, blocks.Else)?, &json!({
@@ -12,17 +18,23 @@ pub fn parse_else(tree :&Mem, nth :&mut usize, parent_idx :usize, lang :&json::J
         }))?
     }
     else {
-        render(jpath!(lang, blocks.else_if)?, &json!({
-            "exp" : &value_parse(&String::from(&code[8..]), 1, &lang)?[..],
-            "block": &transpile(&tree, parent.children[*nth], &lang).as_str()
-        }))?
+        if is_trailing {
+            render(jpath!(lang, blocks.else_if_trailing).unwrap_or(jpath!(lang, blocks.else_if)?), &json!({
+                "exp" : &value_parse(&String::from(&code[8..]), 1, &lang)?[..],
+                "block": &transpile(&tree, parent.children[*nth], &lang).as_str()
+            }))?
+        }
+        else {
+            render(jpath!(lang, blocks.else_if)?, &json!({
+                "exp" : &value_parse(&String::from(&code[8..]), 1, &lang)?[..],
+                "block": &transpile(&tree, parent.children[*nth], &lang).as_str()
+            }))?
+        }
     };
 
-    if *nth < parent.children.len() - 1 && splited.len() > 1 {
-        if regi(&keyword(&tree[parent.children[*nth + 1]].code), "^else$") {
-            *nth += 1;
-            ret += parse_else(&tree, nth, parent_idx, &lang)?.as_str();
-        }
+    if is_trailing {
+        *nth += 1;
+        ret += parse_else(&tree, nth, parent_idx, &lang)?.as_str();
     }
     Ok(ret)
 }
@@ -31,19 +43,31 @@ pub fn parse_if(tree :&Mem, nth :&mut usize, parent_idx :usize, lang :&json::Jso
     let parent = &tree[parent_idx];
     let elem = parent.children[*nth];
     let to_parse = &tree[elem];
+    let mut is_trailing = false;
+    if *nth < parent.children.len() - 1 {
+        if regi(&keyword(&tree[parent.children[*nth + 1]].code), "^else$") {
+            is_trailing = true;
+        }
+    }
 
     let condition = value_parse(&String::from(&to_parse.code[3..]), 1, &lang)?;
     
-    let mut ret = render(jpath!(lang, blocks.If)?, &json!({
-        "exp": &condition[..],
-        "block": transpile(&tree, elem, &lang).as_str()
-    }))?;
+    let mut ret = if is_trailing {
+        render(jpath!(lang, blocks.if_trailing).unwrap_or(jpath!(lang, blocks.If)?), &json!({
+            "exp": &condition[..],
+            "block": transpile(&tree, elem, &lang).as_str()
+        }))?
+    }
+    else {
+        render(jpath!(lang, blocks.If)?, &json!({
+            "exp": &condition[..],
+            "block": transpile(&tree, elem, &lang).as_str()
+        }))?
+    };
     
-    if *nth < parent.children.len() - 1 {
-        if regi(&keyword(&tree[parent.children[*nth + 1]].code), "^else$") {
-            *nth += 1;
-            ret += parse_else(&tree, nth, parent_idx, &lang)?.as_str();
-        }
+    if is_trailing {
+        *nth += 1;
+        ret += parse_else(&tree, nth, parent_idx, &lang)?.as_str();
     }
     Ok(ret)
 }

@@ -1,0 +1,135 @@
+{
+    "name": "Ruby",
+    "ext": "rb",
+    "h_ext": "rb",
+
+    "line_end": ";",
+
+    "ident": "{{name}}",
+    "true": "true",
+    "false": "false",
+
+    "bracket": {
+        "block_open": "{",
+        "block_close": "}",
+
+        "value_open": "(",
+        "value_close": ")",
+
+        "dotarray_open": "[",
+        "dotarray_close": "]",
+
+        "list_open": "[",
+        "list_close": "]"
+    },
+    "operator": {
+        "commas" : ",",
+
+        "pointer" : "({{exp}})",
+        "de_pointer" : "({{exp}})",
+
+        "await" : "(({{exp}}).get())",
+        "async" : "async({{exp}})",
+
+        "tenary": "(({{condition}})?({{l}}):({{r}}))",
+        "assign" : "({{l}} = {{r}})",
+
+        "plus" : "({{l}} + {{r}})",
+        "minus" : "({{l}} - {{r}})",
+        
+        "bitor" : "({{l}} | {{r}})",
+        "or" : "({{l}} || {{r}})",
+        "bitand" : "({{l}} & {{r}})",
+        "and" : "({{l}} && {{r}})",
+
+        "eq" : "({{l}} == {{r}})",
+        "neq" : "({{l}} != {{r}})",
+        
+        "pair" : "{ {{l}} => {{r}} }",
+        
+        "property" : "{{object}}.{{name}}",
+        "context" : "{{context}}::{{member}}",
+        "index" : "{{exp}}[{{at}}]",
+
+        "else" : "({{l}} {{operator}} {{r}})"
+    },
+    "blocks": {
+        "if": "if {{exp}}\n{{block}}\nend\n",
+        "else_if": "elsif {{exp}}\n{{block}} \nend\n",
+        "else": "else\n{{block}}\nend\n",
+        
+        "if_trailing": "if {{exp}} {{block}}\n",
+        "else_if_trailing": "elsif ({{exp}}) {{block}}\n",
+
+        "while": "while {{exp}} do\n{{block}}\nend\n",
+        "repeat": "for {{var}} in (0...{{time}}) do\n{{block}}\nend\n",
+        "foreach": "for {{var}} in {{collection}} do\n{{block}}\nend\n"
+    },
+    "calls": {
+        "call": "{{method}}({{args}})",
+        "call_wrapped": "{{method}}{{args}}",
+        "method_call" : "{{object}}.{{call}}"
+    },
+    "types": {
+        "deduce_type": "auto",
+        "constant": "const",
+        "void_type": "void",
+        "integer": "int"
+    },
+
+    "lambda_blocks": "do |{{args}}|\n {{block}}\nend",
+    "to_lambdas": "|*pp|{{function}}({{args}}*pp)",
+    "lambdas": "|{{args}}|({{exp}})",
+
+    "returns": "return ({{exp}});",
+
+    "namespaces": "namespace {{name}} { {{block}} }",
+
+    "iter_vars": "{{exp}}",
+    "arg_vars": "{{name}}",
+
+    "header_guards": "BEGIN{\n$LOAD_PATH << '.'\n}\n{{contents}}",
+
+    "funcs": {
+        "functions": "def {{name}}({{args}})\n{{block}}\nend\n",
+        "constructor": "def initialize({{args}})\n{{block}}\nend\n",
+        "entry": "{{block}}"
+    },
+    "assigns": {
+        "reference": {
+            "const": "{{name}} = {{copy}}",
+            "make": "{{name}} = {{copy}}",
+            "let": "{{name}} = {{copy}}",
+            "instance": "${{name}} = {{copy}}"
+        },
+        "copy": {
+            "const": "{{name}} = {{copy}}",
+            "make": "{{name}} = {{copy}}",
+            "let": "{{name}} = {{copy}}",
+            "instance": "${{name}} = {{copy}}"
+        },
+        "construct": {
+            "const": "{{name}} = {{type}}.new({{args}})",
+            "make": "{{name}} = {{type}}.new({{args}})",
+            "let": "{{name}} = {{type}}.new({{args}})",
+            "instance": "${{name}} = {{type}}.new({{args}})"
+        }
+    },
+    "imports": {
+        "import": "require '{{path}}.rb'\n",
+        "stdlib": "#include \"worldlib.hpp\"\n",
+        "library": "#include <{{path}}>\n",
+
+        "targetstdlibpath": "worldlib.hpp",
+        "stdlibpath": "../libs/worldlib.hpp"
+    },
+    "classes": {
+        "inherit": "class {{name}} : {{super}} { {{block}} };",
+        "class": "class {{name}} {{block}} end "
+    },
+    "access": {
+        "protected": "protected:",
+        "private": "private:",
+        "public": "public:"
+    }
+}

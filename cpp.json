@@ -74,7 +74,7 @@
         "integer": "int"
     },
 
-    "lambda_blocks": "[&]({{args}}){{ {block} }}",
+    "lambda_blocks": "[&]({{args}}){ {{block}} }",
     "to_lambdas": "[&](auto...pp){return ({{function}}({{args}}pp...));}",
     "lambdas": "[&]({{args}}){ return( {{exp}} ); }",
 
@@ -96,17 +96,20 @@
         "reference": {
             "const": "const {{type}}& {{name}} = {{ref}}",
             "make": "{{type}}& {{name}} = {{ref}}",
-            "let": "{{type}}& {{name}} = {{ref}}"
+            "let": "{{type}}& {{name}} = {{ref}}",
+            "instance": "{{type}}& {{name}} = {{ref}}"
         },
         "copy": {
             "const": "const {{type}} {{name}} = {{copy}}",
             "make": "{{type}}* {{name}} = new {{type}}({{copy}})",
-            "let": "{{type}} {{name}} = {{copy}}"
+            "let": "{{type}} {{name}} = {{copy}}",
+            "instance": "{{type}} {{name}} = {{copy}}"
         },
         "construct": {
             "const": "const {{type}} {{name}}({{args}})",
             "make": "{{type}}* {{name}} = new {{type}}({{args}})",
-            "let": "{{type}} {{name}}({{args}})"
+            "let": "{{type}} {{name}}({{args}})",
+            "instance": "{{type}} {{name}}({{args}})"
         }
     },
     "imports": {

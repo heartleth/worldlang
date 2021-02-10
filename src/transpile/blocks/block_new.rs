@@ -9,7 +9,8 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
     enum DeclareType {
         Make,
         Have,
-        Let
+        Let,
+        Has
     }
     use DeclareType::*;
     use InitType::*;
@@ -19,6 +20,7 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
     let init_type :InitType;
     let make_type :DeclareType = match &keyword[..] {
         "have" => Have,
+        "has" => Has,
         "let" => Let,
         "make" => Make,
         _ => Let
@@ -57,7 +59,8 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
             match make_type {
                 Have => render(jpath!(lang, assigns.construct.Const)?, data)?,
                 Let => render(jpath!(lang, assigns.construct.Let)?, data)?,
-                Make => render(jpath!(lang, assigns.construct.make)?, data)?
+                Make => render(jpath!(lang, assigns.construct.make)?, data)?,
+                Has => render(jpath!(lang, assigns.construct.instance)?, data)?
             }
         },
         CopyType => {
@@ -70,6 +73,7 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
                 Have => render(jpath!(lang, assigns.copy.Const)?, data)?,
                 Let => render(jpath!(lang, assigns.copy.Let)?, data)?,
                 Make => render(jpath!(lang, assigns.copy.make)?, data)?,
+                Has => render(jpath!(lang, assigns.copy.instance)?, data)?
             }
         },
         RefType => {
@@ -82,6 +86,7 @@ pub fn parse_new(s :&String, lang :&json::JsonValue)->Result<String, &'static st
                 Have => render(jpath!(lang, assigns.reference.Const)?, data)?,
                 Let => render(jpath!(lang, assigns.reference.Let)?, data)?,
                 Make => render(jpath!(lang, assigns.reference.make)?, data)?,
+                Has => render(jpath!(lang, assigns.reference.instance)?, data)?
             }
         }
         _None => var.to_string(&lang)

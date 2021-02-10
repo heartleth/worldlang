@@ -100,17 +100,20 @@
         "reference": {
             "const": "const {{name}} = {{ref}}",
             "make": "let {{name}} = {{ref}}",
-            "let": "let {{name}} = {{ref}}"
+            "let": "let {{name}} = {{ref}}",
+            "instance": ""
         },
         "copy": {
             "const": "const {{name}} = {{copy}}",
             "make": "let {{name}} = new {{type}}({{copy}})",
-            "let": "let {{name}} = {{copy}}"
+            "let": "let {{name}} = {{copy}}",
+            "instance": ""
         },
         "construct": {
             "const": "const {{type}} {{name}}({{args}})",
             "make": "let {{name}} = new {{type}}({{args}})",
-            "let": "let {{name}} = new {{type}}({{args}})"
+            "let": "let {{name}} = new {{type}}({{args}})",
+            "instance": ""
         }
     },
     "imports": {
