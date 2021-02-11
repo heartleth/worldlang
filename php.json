@@ -60,7 +60,7 @@
 
         "while": "while ({{exp}}) { {{block}} }",
         "repeat": "for (${{var}} = 0; ${{var}}<{{time}}; ${{var}}++) { {{block}} }",
-        "foreach": "foreach ({{collection}} as ${{var}}) { {{block}} }"
+        "foreach": "foreach ({{collection}} as {{var}}) { {{block}} }"
     },
     "calls": {
         "call": "{{method}}({{args}})",
