@@ -1,6 +1,7 @@
 extern crate handlebars;
 #[macro_use]
 extern crate serde_json;
+pub extern crate colour;
 pub extern crate text_io;
 pub mod transpile;
 use transpile::*;

@@ -55,7 +55,8 @@ pub fn transpile(tree :&Mem, pivot :usize, lang :&json::JsonValue)->String {
         let keyword = keyword(&code);
         
         let parsed = &(||{
-            if regi(&keyword, "^(unless|if|else)$") {
+            if code.len() == 0 { Ok(String::new()) }
+            else if regi(&keyword, "^(unless|if|else)$") {
                 blocks::parse_if(&tree, &mut iter, pivot, &lang)
             }
             else if regi(&keyword, "^(repeat)$") {
@@ -82,7 +83,7 @@ pub fn transpile(tree :&Mem, pivot :usize, lang :&json::JsonValue)->String {
             else if regi(&code, r"^name\s?space\s.+$") {
                 blocks::parse_namespace(&tree, parent, &lang)
             }
-            else if regi(&keyword, "^break|continue$") {
+            else if regi(&keyword, "^(break|continue)$") {
                 Ok(format!("{};", code))
             }
             else if regi(&keyword, "^public|private|protected$") {

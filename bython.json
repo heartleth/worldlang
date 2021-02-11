@@ -3,15 +3,20 @@
     "ext": "by",
     "h_ext": "by",
 
-    "line_end": ";",
+    "line_end": ";\n",
 
     "ident": "{{name}}",
-    "true": "true",
-    "false": "false",
+    "true": "True",
+    "false": "False",
+
+    "then": [
+        "py scripts/wl.py {{file}}.by",
+        "del {{file}}.by"
+    ],
 
     "bracket": {
-        "block_open": "{",
-        "block_close": "}",
+        "block_open": "\n{\n",
+        "block_close": "\n}\n",
 
         "value_open": "(",
         "value_close": ")",
@@ -54,13 +59,13 @@
         "else" : "({{l}} {{operator}} {{r}})"
     },
     "blocks": {
-        "if": "if ({{exp}}) { {{block}} }",
-        "else_if": "elif ({{exp}}) { {{block}} }",
-        "else": "else { {{block}} }",
+        "if": "if ({{exp}}) {\n{{block}}\n}\n",
+        "else_if": "elif ({{exp}}) {\n{{block}}\n}\n",
+        "else": "else {\n{{block}}\n}\n",
 
-        "while": "while ({{exp}}) { {{block}} }",
-        "repeat": "for {{var}} in range({{time}}) { {{block}} }",
-        "foreach": "for {{var}} in {{collection}} { {{block}} }"
+        "while": "while ({{exp}}) {\n{{block}}\n}\n",
+        "repeat": "for {{var}} in range({{time}}) {\n{{block}}\n}\n",
+        "foreach": "for {{var}} in {{collection}} {\n{{block}}\n}\n"
     },
     "calls": {
         "call": "{{method}}({{args}})",
@@ -88,9 +93,9 @@
     "header_guards": "{{contents}}",
 
     "funcs": {
-        "functions": "def {{name}}({{args}})->{{type}} { {{block}} }",
-        "constructor": "__init__({{args}}){ {{block}} }",
-        "entry": "if __name__=='__main__' { {{block}} }"
+        "functions": "def {{name}}({{args}})->{{type}} {\n{{block}}\n}\n",
+        "constructor": "def __init__({{args}}){\n{{block}}\n}\n",
+        "entry": "if __name__=='__main__' {\n{{block}}\n}\n"
     },
     "assigns": {
         "reference": {
@@ -121,8 +126,8 @@
         "stdlibpath": "../libs/worldlib.py"
     },
     "classes": {
-        "inherit": "class {{name}}({{super}}) { {{block}} }",
-        "class": "class {{name}}{ {{block}} }"
+        "inherit": "class {{name}}({{super}}) {\n{{block}}\n}\n",
+        "class": "class {{name}}{\n{{block}}\n}\n"
     },
     "access": {
         "protected": "",

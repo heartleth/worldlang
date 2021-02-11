@@ -1,4 +1,10 @@
+; Bython
+; https://github.com/mathialo/bython
+
 library standard
 
 When it starts
-    println: "hello, world!"
+    if true
+        println: "hello, world 1 !"
+        println: "hello, world 2 !"
+        println: "hello, world 3 !"
