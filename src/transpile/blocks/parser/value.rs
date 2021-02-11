@@ -393,9 +393,12 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
     else if level == 14 {
         left_operator(&mut do_pass, (units, list, r"^(was|were|do)$"), &mut |cnt :usize| {
             if regi(&units[cnt], "^(do)$") {
+                let call_args = parse_sentence_struct(&format!("it {}", &units[cnt + 1..].to_vec().join(" ")), &lang)?;
                 ret = render(jpath!(lang, calls.method_call)?, &json!({
                     "object": &value_parse(&list[0..cnt].to_vec().join(" "), 1, &lang)?,
-                    "call": &parse_sentence(&format!("it {}", &units[cnt + 1..].to_vec().join(" ")), &lang)?
+                    "call": &parse_sentence(&format!("it {}", &units[cnt + 1..].to_vec().join(" ")), &lang),
+                    "method": &(call_args.1),
+                    "args": &(call_args.2),
                 }))?;
             }
             else {

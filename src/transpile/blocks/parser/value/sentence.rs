@@ -54,3 +54,34 @@ pub fn parse_sentence(s :&String, lang :&json::JsonValue)->Result<String, &'stat
     }
     Ok(ret)
 }
+
+pub fn parse_sentence_struct(s :&String, lang :&json::JsonValue)->Result<(String, String, String), &'static str> {
+    let spl = split(&s);
+    let mut has_subject = true;
+    
+    if s.len() <= 1 { return Err("wrong clause"); }
+    let subject_idx = first_phrase(&spl, true, false)?;
+    let mut subject = value_parse(&spl[..=subject_idx].to_vec().join(" "), 1, &lang)?;
+
+    if subject.to_ascii_lowercase() == "it" {
+        subject = String::new();
+        has_subject = false;
+    }
+    
+    if spl.len() > subject_idx + 2 && regi(&spl[subject_idx + 2], "^(->|(to|of|with|about|for|:|->)|about|for|:)$") {
+        if has_subject {
+            return Ok((subject, String::from(&spl[subject_idx + 1]), value_parse(&spl[subject_idx+3..].to_vec().join(" "), 0, &lang)?));
+        }
+        else {
+            return Ok((String::new(), String::from(&spl[subject_idx + 1]), value_parse(&spl[subject_idx+3..].to_vec().join(" "), 0, &lang)?));
+        }
+    }
+    else {
+        if has_subject {
+            return Ok((subject, String::from(&spl[subject_idx + 1]), String::new()));
+        }
+        else {
+            return Ok((String::new(), String::from(&spl[subject_idx + 1]), String::new()));
+        }
+    }
+}
