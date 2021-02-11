@@ -38,6 +38,7 @@ pub use blocks::{
     tree
 };
 pub use super::runner::filesys::CURRENT_FILE as CURRENT_FILE;
+pub use crate::jpath;
 
 pub fn transpile(tree :&Mem, pivot :usize, lang :&json::JsonValue)->String {
     let mut ret = String::new();
@@ -97,10 +98,10 @@ pub fn transpile(tree :&Mem, pivot :usize, lang :&json::JsonValue)->String {
                 blocks::parse_use(&tree, parent, &lang)
             }
             else if first_phrase(&code_splited, true, false)? == code_splited.len() - 1 {
-                Ok(value_parse(&code, 1, &lang)? + ";")
+                Ok(value_parse(&code, 1, &lang)? + jpath!(lang, line_end)?)
             }
             else if first_clause(&code_splited)? == code_splited.len() - 1 {
-                Ok(parse_sentence(&code, &lang)? + ";")
+                Ok(parse_sentence(&code, &lang)? + jpath!(lang, line_end)?)
             }
             else {
                 Err("Invalid sentence")

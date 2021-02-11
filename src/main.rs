@@ -44,7 +44,7 @@ fn main()-> std::io::Result<()> {
  - Compiled to any language
  - enpp-every [filename without ext]
  - enpp-every [filename without ext] [language json]
-release Xia
+release Shang
 ");
     }
     else if args.len() == 2 {

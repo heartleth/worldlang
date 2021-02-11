@@ -377,9 +377,9 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
             let func_name = &verb_parse(&String::from(&units[0][..&units[0].len()-1]), &lang);
             let to_be_evaluated = &value_parse(&list[1..].to_vec().join(" "), 0, &lang)?;
             if is_bracket(&list[1..].to_vec().join(" "), ('(', ')'))? {
-                ret = render(jpath!(lang, calls.call_wrapped)?, &json!({
+                ret = render(jpath!(lang, calls.call)?, &json!({
                     "method": func_name,
-                    "args": to_be_evaluated
+                    "args": to_be_evaluated[jpath!(lang, bracket.value_open)?.len()..to_be_evaluated.len()-jpath!(lang, bracket.value_close)?.len()]
                 }))?;
             }
             else {
