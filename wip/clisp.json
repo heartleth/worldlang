@@ -60,7 +60,7 @@
 
         "while": "while ({{exp}}) { {{block}} }",
         "repeat": "for (int {{var}} = 0; {{var}}<{{time}}; {{var}}++) { {{block}} }",
-        "foreach": "for ({{var}} : {{collection}}) { {{block}} }"
+        "foreach": "(loop for {{var}} in {{collection}} do {{block}})"
     },
     "calls": {
         "call": "({{method}} {{args}})",

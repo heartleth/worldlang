@@ -1,13 +1,17 @@
 {
-    "name": "C++",
-    "ext": "cpp",
-    "h_ext": "hpp",
+    "name": "Kotlin",
+    "ext": "kt",
+    "h_ext": "kt",
 
     "line_end": ";",
 
     "ident": "{{name}}",
     "true": "true",
     "false": "false",
+    
+    "then": [
+        "kotlinc {{file}}.kt"
+    ],
 
     "bracket": {
         "block_open": "{",
@@ -60,7 +64,7 @@
 
         "while": "while ({{exp}}) { {{block}} }",
         "repeat": "for (int {{var}} = 0; {{var}}<{{time}}; {{var}}++) { {{block}} }",
-        "foreach": "for ({{var}} : {{collection}}) { {{block}} }"
+        "foreach": "for ({{var}} in {{collection}}) { {{block}} }"
     },
     "calls": {
         "call": "{{method}}({{args}})",
@@ -71,7 +75,7 @@
         "deduce_type": "auto",
         "constant": "const",
         "void_type": "void",
-        "integer": "int"
+        "integer": "Int"
     },
 
     "lambda_blocks": "[&]({{args}}){ {{block}} }",
@@ -82,27 +86,27 @@
 
     "namespaces": "namespace {{name}} { {{block}} }",
 
-    "iter_vars": "{{type}} {{name}}",
-    "arg_vars": "{{type}} {{name}}",
+    "iter_vars": "{{name}}",
+    "arg_vars": "{{name}} :{{type}}",
 
-    "header_guards": "#ifndef __{{token}}_H__\n#define __{{token}}_H__\n{{contents}}\n#endif",
+    "header_guards": "{{contents}}",
 
     "funcs": {
-        "functions": "{{type}} {{name}}({{args}}) { {{block}} }",
-        "constructor": "{{class}}({{args}}){ {{block}} }",
-        "entry": "int main(){ {{block}} }"
+        "functions": "fun {{name}}({{args}}): {{type}} { {{block}} }",
+        "constructor": "constructor({{args}}) { {{block}} }",
+        "entry": "fun main() { {{block}} }"
     },
     "assigns": {
         "reference": {
-            "const": "final {{type}}& {{name}} = {{ref}}",
+            "const": "const {{type}}& {{name}} = {{ref}}",
             "make": "{{type}}& {{name}} = {{ref}}",
             "let": "{{type}}& {{name}} = {{ref}}",
             "instance": "{{type}}& {{name}} = {{ref}}"
         },
         "copy": {
-            "const": "final {{type}} {{name}} = {{copy}}",
+            "const": "const {{type}} {{name}} = {{copy}}",
             "make": "{{type}}* {{name}} = new {{type}}({{copy}})",
-            "let": "{{type}} {{name}} = {{copy}}",
+            "let": "val {{name}}: {{type}} = {{copy}}",
             "instance": "{{type}} {{name}} = {{copy}}"
         },
         "construct": {
@@ -125,8 +129,8 @@
         "class": "class {{name}}{ {{block}} };"
     },
     "access": {
-        "protected": "protected:",
-        "private": "private:",
-        "public": "public:"
+        "protected": "protected",
+        "private": "private",
+        "public": "public"
     }
 }
