@@ -9,9 +9,7 @@
     "true": "true",
     "false": "false",
     
-    "then": [
-        "kotlinc {{file}}.kt"
-    ],
+    "then": [],
 
     "bracket": {
         "block_open": "{",
