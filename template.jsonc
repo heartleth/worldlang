@@ -26,11 +26,22 @@
     // Enpp-every engine does not make newlines automaticly.
     // If you want to write about javascript then please write ";" here
     "line_end": "", 
-
-    // "line_end": ";"
+    
+    // "ident": "{{name}}",
+    // Identifiers except true and false
+    // This is need because languages like PHP and Perl
     "ident": "{{name}}",
-    "true": "true",
-    "false": "false",
+
+    // true and false
+    // "true": "true",
+    // "false": "false",
+    "true": "",
+    "false": "",
+
+    "then": [
+        // External engine execution commands
+        // Runs sequentially
+    ],
 
     "bracket": {
         // Opening and closing blocks

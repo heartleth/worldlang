@@ -62,15 +62,15 @@
         "else_if": "elsif {{exp}}\n{{block}} \nend\n",
         "else": "else\n{{block}}\nend\n",
         
-        "if_trailing": "if {{exp}} {{block}}\n",
-        "else_if_trailing": "elsif ({{exp}}) {{block}}\n",
+        "if_trailing": "if {{exp}} then {{block}}\n",
+        "else_if_trailing": "elsif ({{exp}}) then {{block}}\n",
 
         "while": "while {{exp}} do\n{{block}}\nend\n",
         "repeat": "for {{var}} in (0...{{time}}) do\n{{block}}\nend\n",
         "foreach": "for {{var}} in {{collection}} do\n{{block}}\nend\n"
     },
     "calls": {
-        "call": "({{method}}.class.name=='Proc'?{{method}}.({{args}}):{{method}}({{args}}))",
+        "call": "{{method}}({{args}})",
         "call_wrapped": "({{method}}.class.name=='Proc'?{{method}}.{{args}}:{{method}}{{args}})",
         "method_call" : "({{object}}.{{method}}.class.name=='Proc'?{{object}}.{{method}}.({{args}}):{{object}}.{{method}}({{args}}))"
     },
@@ -89,7 +89,7 @@
 
     "namespaces": "namespace {{name}} { {{block}} }",
 
-    "iter_vars": "{{exp}}",
+    "iter_vars": "{{name}}",
     "arg_vars": "{{name}}",
 
     "header_guards": "BEGIN{\n$LOAD_PATH << '.'\n}\n{{contents}}",
