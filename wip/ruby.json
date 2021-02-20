@@ -71,7 +71,7 @@
     },
     "calls": {
         "call": "{{method}}({{args}})",
-        "call_wrapped": "({{method}}.class.name=='Proc'?{{method}}.{{args}}:{{method}}{{args}})",
+        "call_wrapped": "{{method}}{{args}}",
         "method_call" : "({{object}}.{{method}}.class.name=='Proc'?{{object}}.{{method}}.({{args}}):{{object}}.{{method}}({{args}}))"
     },
     "types": {

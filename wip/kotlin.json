@@ -18,8 +18,8 @@
         "value_open": "(",
         "value_close": ")",
 
-        "dotarray_open": "std::vector<int>({",
-        "dotarray_close": "})",
+        "dotarray_open": "intArrayOf(",
+        "dotarray_close": ")",
 
         "list_open": "{",
         "list_close": "}"
@@ -39,9 +39,9 @@
         "plus" : "({{l}} + {{r}})",
         "minus" : "({{l}} - {{r}})",
         
-        "bitor" : "({{l}} | {{r}})",
+        "bitor" : "({{l}} or {{r}})",
         "or" : "({{l}} || {{r}})",
-        "bitand" : "({{l}} & {{r}})",
+        "bitand" : "({{l}} and {{r}})",
         "and" : "({{l}} && {{r}})",
 
         "eq" : "({{l}} == {{r}})",
@@ -70,9 +70,9 @@
         "method_call" : "{{object}}.{{call}}"
     },
     "types": {
-        "deduce_type": "auto",
+        "deduce_type": "\b\b",
         "constant": "const",
-        "void_type": "void",
+        "void_type": "Unit",
         "integer": "Int"
     },
 
@@ -103,9 +103,9 @@
         },
         "copy": {
             "const": "const {{type}} {{name}} = {{copy}}",
-            "make": "{{type}}* {{name}} = new {{type}}({{copy}})",
-            "let": "val {{name}}: {{type}} = {{copy}}",
-            "instance": "{{type}} {{name}} = {{copy}}"
+            "make": "var {{name}} = new {{type}}({{copy}})",
+            "let": "var {{name}} = {{copy}}",
+            "instance": "var {{name}} = {{copy}}"
         },
         "construct": {
             "const": "const {{type}} {{name}}({{args}})",
