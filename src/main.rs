@@ -48,22 +48,22 @@ fn main()-> std::io::Result<()> {
 release Shang
 ");
     }
-    else if args.len() == 2 {
-        let lang = json::parse(&std::fs::read_to_string("./language.json").expect("Cannot found ./language.json")).expect("Cannot parse language.json");
-        filesys::convert_to_cpp(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
-    }
-    else {
-        let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
-        filesys::convert_to_cpp(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
-    }
+	else if args.len() == 2 {
+		let lang = json::parse(&std::fs::read_to_string("./language.json").expect("Cannot found ./language.json")).expect("Cannot parse language.json");
+        filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
+	}
+	else {
+		let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
+        filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
+	}
 
-    Ok(())
+	Ok(())
 }
 
 #[macro_export]
 macro_rules! jpath {
-    ($ln:expr, $firstname:meta $(.$names:meta)*) => {{
-        $ln[stringify!($firstname).to_ascii_lowercase()]$([stringify!($names).to_ascii_lowercase()])*
-        .as_str().ok_or(stringify!(Cannot found: $firstname$(.$names)*))
-    }};
+	($ln:expr, $firstname:meta $(.$names:meta)*) => {{
+		$ln[stringify!($firstname).to_ascii_lowercase()]$([stringify!($names).to_ascii_lowercase()])*
+		.as_str().ok_or(stringify!(Cannot found: $firstname$(.$names)*))
+	}};
 }

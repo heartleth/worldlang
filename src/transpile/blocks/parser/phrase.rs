@@ -78,6 +78,12 @@ pub fn first_phrase(s :&Vec<String>, _is_first :bool, allow_multi :bool)->Result
                 ret += first_phrase(&s[ret+1..].to_vec(), false, false)? + 1;
             }
         }
+        else if regi(&first_low, "'s$") {
+            ret = 1;
+            if ret < s.len()-1 {
+                ret += first_phrase(&s[1..].to_vec(), false, false)?;
+            }
+        }
         else if regi(&first_low, "^(value|addr(ess)?|ptr|pointer)$") {
             ret = 2;
             if ret < s.len()-1 {

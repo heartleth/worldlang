@@ -439,8 +439,15 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
         if regi(&units[units.len()-2], r"^(having)$") {
             do_pass = false;
             ret = render(jpath!(lang, operator.property)?, &json!({
-                "context": &units[units.len()-1],
-                "member": &value_parse(&list[0..units.len()-2].to_vec().join(" "), 1, &lang)?
+                "object": &units[units.len()-1],
+                "name": &value_parse(&list[0..units.len()-2].to_vec().join(" "), 1, &lang)?
+            }))?;
+        }
+        else if regi(&units[units.len()-2], r"'s$") {
+            do_pass = false;
+            ret = render(jpath!(lang, operator.property)?, &json!({
+                "object": &units[units.len()-2][0..&units[units.len()-2].len()-2],
+                "name": &value_parse(&list[1..units.len()].to_vec().join(" "), 1, &lang)?
             }))?;
         }
     }

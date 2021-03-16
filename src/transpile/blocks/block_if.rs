@@ -80,7 +80,7 @@ pub fn parse_import(s :&Mem, pivot :usize, lang :&json::JsonValue)->Result<Strin
             use std::path::Path;
             let path = &s[pivot].code[7..];
             if Path::new(&format!("{}.{}", path, jpath!(lang, h_ext)?)).exists() {
-                crate::runner::filesys::convert_to_cpp(&String::from(path), jpath!(lang, h_ext)?, &lang).expect("Failed to write file");
+                crate::runner::filesys::convert(&String::from(path), jpath!(lang, h_ext)?, &lang).expect("Failed to write file");
                 ret = render(jpath!(lang, imports.import)?, &json!({ "path": path }))?;
             }
             else {

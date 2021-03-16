@@ -11,7 +11,7 @@ use json;
 pub static mut CURRENT_FILE :String = String::new();
 pub static mut IS_FIRST :bool = true;
 
-pub fn convert_to_cpp(path :&String, ext :&str, lang :&json::JsonValue)->std::io::Result<()> {
+pub fn convert(path :&String, ext :&str, lang :&json::JsonValue)->std::io::Result<()> {
     unsafe { CURRENT_FILE = String::from(&path[..]) }
 
     let mut target = File::create(format!("{}.{}", path, ext))?;
