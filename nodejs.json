@@ -122,7 +122,7 @@
         "library": "const {{path}} = require('{{path}}');\n",
 
         "targetstdlibpath": "worldlib.js",
-        "stdlibpath": "../libs/worldlib.js"
+        "stdlibpath": "libs/worldlib.js"
     },
     "classes": {
         "inherit": "class {{name}} extends {{super}} { {{block}} }",

@@ -310,7 +310,7 @@
         // Where to copy worldlib at
         // "targetstdlibpath": "worldlib.hpp",
         "targetstdlibpath": "",
-        "stdlibpath": "../libs/worldlib.SOME_EXT"
+        "stdlibpath": "libs/worldlib.SOME_EXT"
     },
     "classes": {
         // class doesn't interit another class(es)

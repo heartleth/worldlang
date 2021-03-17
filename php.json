@@ -118,7 +118,7 @@
         "library": "include '{{path}}';\n",
 
         "targetstdlibpath": "worldlib.php",
-        "stdlibpath": "../libs/worldlib.php"
+        "stdlibpath": "libs/worldlib.php"
     },
     "classes": {
         "inherit": "class {{name}} extends {{super}} { {{block}} }",

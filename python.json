@@ -123,7 +123,7 @@
         "library": "import {{path}}\n",
 
         "targetstdlibpath": "worldlib.py",
-        "stdlibpath": "../libs/worldlib.py"
+        "stdlibpath": "libs/worldlib.py"
     },
     "classes": {
         "inherit": "class {{name}}({{super}}) {\n{{block}}\n}\n",

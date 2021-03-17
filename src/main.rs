@@ -53,7 +53,7 @@ release Shang
         filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
 	}
 	else {
-		let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
+        let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
         filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
 	}
 
