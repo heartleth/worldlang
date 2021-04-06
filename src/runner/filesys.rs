@@ -1,5 +1,6 @@
 use rand::distributions::Alphanumeric;
 use super::transpile::*;
+use super::is_quiet;
 use blocks::render;
 use std::io::Write;
 use std::fs::File;
@@ -19,15 +20,17 @@ pub fn convert(path :&String, ext :&str, lang :&json::JsonValue)->std::io::Resul
     let mut source = String::new();
     source_file.read_to_string(&mut source)?;
     let converted :String = transpile(&tree::CodeTree::treeify(&source), 0, &lang);
-    unsafe {
-        if IS_FIRST {
-            colour::green!("  Transpiling ");
-        }
-        else {
-            colour::green!("=>Transpiling ");
-        }
+    if !is_quiet() {
+        unsafe {
+            if IS_FIRST {
+                colour::green!("  Transpiling ");
+            }
+            else {
+                colour::green!("=>Transpiling ");
+            }
+        }   
+        println!("{0}.epp => {0}.{1}", path, ext);
     }
-    println!("{0}.epp => {0}.{1}", path, ext);
     target.write_all(render(&lang["header_guards"].as_str().unwrap(), &json!({
         "token": rand::thread_rng().sample_iter(&Alphanumeric).take(20).collect::<String>(),
         "contents": converted,
@@ -37,8 +40,10 @@ pub fn convert(path :&String, ext :&str, lang :&json::JsonValue)->std::io::Resul
 
     for c in lang["then"].members() {
         let cmd = render(c.as_str().unwrap(), &json!({"file": path})).unwrap();
-        colour::green!("=>Executing ");
-        println!("{}", cmd);
+        if !is_quiet() {
+            colour::green!("=>Executing ");
+            println!("{}", cmd);
+        }
         if cfg!(windows) {
             std::process::Command::new("cmd")
                 .args(&["/c", &cmd]).output()

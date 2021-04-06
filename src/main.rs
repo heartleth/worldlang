@@ -10,6 +10,8 @@ use runner::*;
 use std::env;
 pub use json;
 
+pub static mut IS_QUIET: bool = false;
+
 fn main()-> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
     let mut run_cmds = None;
@@ -47,7 +49,7 @@ fn main()-> std::io::Result<()> {
  - Compiled to any language
  - enpp-every [filename without ext]
  - enpp-every [filename without ext] [language json]
-release Zhou
+release Chin
 ");
     }
 	else if args.len() == 2 {
@@ -58,13 +60,35 @@ release Zhou
         let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
         if args[2] == "run" {
             path = &args[1];
+            if args.len() >= 4 {
+                if args[3] == "quietly" {
+                    unsafe { IS_QUIET = true; }
+                }
+            }
+            filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
             run_cmds = Some(lang);
         }
-        else {
+        else if args[2] == "quietly" {
+            unsafe { IS_QUIET = true; }
             filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
-            if args.len() == 4 {
+        }
+        else {
+            if args.len() >= 4 {
                 if args[3] == "run" {
                     path = &args[1];
+                    if args.len() >= 5 {
+                        if args[4] == "quietly" {
+                            unsafe { IS_QUIET = true; }
+                        }
+                    }
+                }
+                else if args[3] == "quietly" {
+                    unsafe { IS_QUIET = true; }
+                }
+            }
+            filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
+            if args.len() >= 4 {
+                if args[3] == "run" {
                     run_cmds = Some(lang);
                 }
             }
@@ -75,8 +99,10 @@ release Zhou
         use std::process::Stdio;
         for c in cmds["run"].members() {
             let cmd = transpile::blocks::render(c.as_str().unwrap(), &json!({"file": path})).unwrap();
-            colour::green!("=>Running ");
-            println!("{}", cmd);
+            if !unsafe { IS_QUIET } {
+                colour::green!("=>Running ");
+                println!("{}", cmd);
+            }
             if cfg!(windows) {
                 std::process::Command::new("cmd")
                     .args(&["/c", &cmd])
