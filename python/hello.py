@@ -1,11 +1,12 @@
 from worldlib import *
-if __name__=='__main__':
-    if (True):
-        println("hello, world 1 !")
-        println("hello, world 2 !")
-        println("hello, world 3 !")
-        
+def wait1000():
+    println("hello1")
+    wait(1000)
+    println("hello2")
     
+
+if __name__=='__main__':
+    get_time(wait1000)
     
 
 

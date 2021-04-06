@@ -9,11 +9,6 @@
     "true": "true",
     "false": "false",
 
-    "then": [],
-    "run": [
-        "node {{file}}.js"
-    ],
-
     "bracket": {
         "block_open": "{",
         "block_close": "}",
@@ -127,7 +122,7 @@
         "library": "const {{path}} = require('{{path}}');\n",
 
         "targetstdlibpath": "worldlib.js",
-        "stdlibpath": "libs/worldlib.js"
+        "stdlibpath": "../libs/worldlib.js"
     },
     "classes": {
         "inherit": "class {{name}} extends {{super}} { {{block}} }",

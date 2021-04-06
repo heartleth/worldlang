@@ -1,0 +1,11 @@
+from worldlib import *
+def wait1000() {
+println("hello1");
+wait(1000);
+println("hello2");
+
+}
+if __name__=='__main__' {
+get_time(wait1000);
+
+}

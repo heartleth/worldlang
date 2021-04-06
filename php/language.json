@@ -9,11 +9,6 @@
     "true": "true",
     "false": "false",
 
-    "then": [],
-    "run": [
-        "php {{file}}.php"
-    ],
-
     "bracket": {
         "block_open": "{",
         "block_close": "}",
@@ -123,7 +118,7 @@
         "library": "include '{{path}}';\n",
 
         "targetstdlibpath": "worldlib.php",
-        "stdlibpath": "libs/worldlib.php"
+        "stdlibpath": "../libs/worldlib.php"
     },
     "classes": {
         "inherit": "class {{name}} extends {{super}} { {{block}} }",

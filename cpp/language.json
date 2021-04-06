@@ -9,13 +9,6 @@
     "true": "true",
     "false": "false",
 
-    "then": [],
-    "run": [
-        "g++ {{file}}.cpp -std=c++17 -o repp_{{file}}",
-        "repp_{{file}}",
-        "del repp_{{file}}"
-    ],
-
     "bracket": {
         "block_open": "{",
         "block_close": "}",
@@ -125,7 +118,7 @@
         "library": "#include <{{path}}>\n",
 
         "targetstdlibpath": "worldlib.hpp",
-        "stdlibpath": "libs/worldlib.hpp"
+        "stdlibpath": "../libs/worldlib.hpp"
     },
     "classes": {
         "inherit": "class {{name}} : {{super}} { {{block}} };",

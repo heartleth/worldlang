@@ -12,6 +12,8 @@ pub use json;
 
 fn main()-> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
+    let mut run_cmds = None;
+    let mut path = "";
 
     if args.len() == 1 {
         println!(r"Enpp-every
@@ -45,17 +47,60 @@ fn main()-> std::io::Result<()> {
  - Compiled to any language
  - enpp-every [filename without ext]
  - enpp-every [filename without ext] [language json]
-release Shang
+release Zhou
 ");
     }
 	else if args.len() == 2 {
-		let lang = json::parse(&std::fs::read_to_string("./language.json").expect("Cannot found ./language.json")).expect("Cannot parse language.json");
+        let lang = json::parse(&std::fs::read_to_string("./language.json").expect("Cannot found ./language.json")).expect("Cannot parse language.json");
         filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
 	}
-	else {
+	else if args.len() >= 3 {
         let lang = json::parse(&std::fs::read_to_string(&args[2]).expect("Cannot found the json")).expect("Cannot parse language json");
-        filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
+        if args[2] == "run" {
+            path = &args[1];
+            run_cmds = Some(lang);
+        }
+        else {
+            filesys::convert(&args[1], lang["ext"].as_str().unwrap_or("txt"), &lang)?;
+            if args.len() == 4 {
+                if args[3] == "run" {
+                    path = &args[1];
+                    run_cmds = Some(lang);
+                }
+            }
+        }
 	}
+
+    if let Some(cmds) = run_cmds {
+        use std::process::Stdio;
+        for c in cmds["run"].members() {
+            let cmd = transpile::blocks::render(c.as_str().unwrap(), &json!({"file": path})).unwrap();
+            colour::green!("=>Running ");
+            println!("{}", cmd);
+            if cfg!(windows) {
+                std::process::Command::new("cmd")
+                    .args(&["/c", &cmd])
+                    .stdout(Stdio::inherit())
+                    .stdin(Stdio::inherit())
+                    .stderr(Stdio::inherit())
+                    .spawn()
+                    .expect("Error!")
+                    .wait()
+                    .expect("Error!");
+            }
+            else {
+                std::process::Command::new("sh")
+                    .args(&["-c", &cmd])
+                    .stdout(Stdio::inherit())
+                    .stdin(Stdio::inherit())
+                    .stderr(Stdio::inherit())
+                    .spawn()
+                    .expect("Error!")
+                    .wait()
+                    .expect("Error!");
+            }
+        }
+    }
 
 	Ok(())
 }
