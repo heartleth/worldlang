@@ -31,7 +31,7 @@ So, `External engines` will help us. Python library [Bython]([https://github.com
 ## Tutorial
 be written in [template.jsonc](template.jsonc). If you can, you don't even need to read it. It's just a manual how to transpile. If there is `if true` code, the parser engine will find `(root).blocks.if` and apply it.
 
-We need more. Some languages print string in `stdout` with `print`, some is `console.log`, etc. So `worldlib` help us. Implementation is written [here](stdlib_proto.md).
+We need more. Some languages print string in `stdout` with `print`, some use `console.log`, and so. So `worldlib` help us. Implementation is written [here](stdlib_proto.md).
 
 Just with _C++_, _Node.js_, _PHP_, _Python_, it's enough to write great codes.
 
