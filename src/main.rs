@@ -47,9 +47,9 @@ fn main()-> std::io::Result<()> {
             \\:::```|=========`````` __---``
                  `````-----------````
  - Compiled to any language
- - enpp-every [filename without ext]
- - enpp-every [filename without ext] [language json]
-release Chin
+ - worldlang [filename without ext] [run] [quietly]
+ - worldlang [filename without ext] [language json] [run] [quietly]
+release Han
 ");
     }
 	else if args.len() == 2 {

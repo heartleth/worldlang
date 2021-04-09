@@ -163,12 +163,15 @@ pub fn value_parse(s :&String, level :usize, lang :&json::JsonValue)->Result<Str
         else if regi(&units[0], r"^(to)$") {
             do_pass = false;
             let func_call = parse_sentence(&format!("it {}", &s[3..]), &lang)?;
+            let trailing_comma = if func_call.chars().nth(func_call.len()-2).unwrap() == '(' {""} else {
+                jpath!(lang, operator.commas)?
+            };
             
             ret = render(jpath!(lang, to_lambdas)?, &json!({
                 "call": &func_call[..func_call.len()-1],
-                "comma": if func_call.chars().nth(func_call.len()-2).unwrap() == '(' {""} else {
-                    jpath!(lang, operator.commas)?
-                }
+                "comma": &trailing_comma,
+                "function": &list[1],
+                "args": &value_parse(&String::from(&s[5+list[1].len()+list[2].len()..]), 0, lang)?
             }))?;
         }
     }

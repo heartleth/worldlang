@@ -1,5 +1,9 @@
 # Project worldlang
-Language union
+![GitHub](https://img.shields.io/github/license/heartleth/worldlang?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/heartleth/worldlang?style=for-the-badge)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/heartleth/worldlang?style=for-the-badge)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/myjmyjmyj.wlsupport?style=for-the-badge)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Write%20code%20once%20and%20do%20everything!&url=https://github.com/heartleth/worldlang)
 
 <p align=center>
 <img src="img/WL.png">
